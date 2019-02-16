@@ -1,11 +1,15 @@
 from pyquil import Program, get_qc
 from pyquil.gates import RX, RZ, RY, CZ, MEASURE
 
+# function that returns a program for producing |00> and |11> with equal probabilties.
+
 
 def init_qc_exec(ckt_program):
     qc = get_qc("9q-square-qvm", as_qvm=True, noisy=False)
     executable = qc.compile(ckt_program)
     return qc, executable
+
+# function that returns a program for producing any of the 4 Bell states
 
 
 def gen_ckt():

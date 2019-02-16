@@ -1,8 +1,13 @@
 import numpy as np
 
+# a cost function that returns the value of a gradient at x
+
 
 def cost_func(x):
     return 2*(x-0.5)
+
+# function that returns an optimal value of theta 
+# for the input executable using an intance of the QuantumComputer qc using gradient descent
 
 
 def find_optimal_theta(qc, executable):
@@ -24,6 +29,6 @@ def find_optimal_theta(qc, executable):
         iters = iters+1
         if iters % 20 == 0:
             print("Iteration", iters, "\nY:", y, "\nTheta0:",
-                  theta_0/np.pi, "pi") 
+                  theta_0/np.pi, "pi")
 
     return np.round(theta_0/np.pi, 3), iters

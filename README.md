@@ -1,6 +1,10 @@
 # bqresearcher_task_2
 bqResearcher-Task 2: circuit for producing |00> and |11> with equal probabilities. Parameters are found using gradient descent. Circuit is modified for producing any of the 4 Bell states.
 
+Run code as follows:
+1. Open two terminals and run ```qvm -S``` and ```quilc -S``` in each of the terminals
+2. Open another terminal and run main.py as ```python main.py```
+
 main.py: (all qubits are initially at state |0>)
   1. Circuit for producing |00> and |11> with equal probabilties:
      - A parametric circuit is called that uses only native gates ( http://docs.rigetti.com/en/stable/apidocs/gates.html?highlight=native#native-gates-for-rigetti-qpus). 

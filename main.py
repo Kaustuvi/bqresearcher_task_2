@@ -17,13 +17,15 @@ print("Number of iterations:", iters)
 # modification for bell ckt
 print("\nModification for Bell State--->")
 iter = 1
-rz_theta = np.pi/2
+r_theta = np.pi/2
 wf = WavefunctionSimulator()
 while iter <= 4:
-    theta_0 = (2*np.ceil(iter/2)-1)*np.pi/2
+    theta_0 = ((-1)**(np.ceil(iter/2)))*np.pi/2
     theta_1 = (np.ceil(iter/2)-1)*np.pi
-    theta_2 = (2*iter-1)*np.pi/2
-    bckt_program = ct.bell_ckt(rz_theta, theta_0, theta_1, theta_2)
+    x_theta = ((-1)**(np.ceil(iter/2)+1))*np.pi
+    theta_2 = ((-1)**iter)*np.pi/2
+
+    bckt_program = ct.bell_ckt(r_theta, x_theta, theta_0, theta_1, theta_2)
     bell_state = wf.wavefunction(bckt_program)
     print("Bell State", iter, ":", bell_state)
     iter = iter+1

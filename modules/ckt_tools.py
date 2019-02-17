@@ -18,12 +18,15 @@ def gen_ckt():
     theta_1_ref = ckt.declare("theta_1", memory_type='REAL')
     rx_theta_ref = ckt.declare("rx_theta", memory_type='REAL')
     ro = ckt.declare('ro', memory_type='BIT', memory_size=2)
+
     ckt += RX(rx_theta_ref, 1)
     ckt += RZ(theta_0_ref, 1)
     ckt += RX(-1*rx_theta_ref, 1)
 
-    ckt += RX(rx_theta_ref, 0)
+    ckt += RX(theta_1_ref, 0)
     ckt += RZ(theta_1_ref, 0)
+
+    ckt += RX(rx_theta_ref, 0)
     ckt += RZ(theta_0_ref, 0)
     ckt += RX(-1*rx_theta_ref, 0)
 
@@ -32,25 +35,23 @@ def gen_ckt():
     return ckt
 
 
-def bell_ckt(r_theta, x_theta, theta_0, theta_1, theta_2):
+def bell_ckt(x_theta, theta_0, theta_1):
     ckt = Program()
-    ckt += RZ(-1*r_theta, 1),
-    ckt += RX(2*r_theta, 1)
-    ckt += RX(theta_0, 1),
-    ckt += RZ(r_theta, 1),
 
-    ckt += RZ(theta_1, 0),
-    ckt += RX(theta_1, 0),
+    ckt += RX(x_theta, 1)
+    ckt += RZ(x_theta, 1)
+    ckt += RX(-1*x_theta, 1)
 
-    ckt += RZ(-1*r_theta, 0),
-    ckt += RX(x_theta, 0),
-    ckt += RX(theta_2, 0),
-    ckt += RZ(r_theta, 0),
+    ckt += RX(theta_0, 0)
+    ckt += RZ(theta_0, 0)
 
-    ckt += CZ(1, 0),
+    ckt += RX(x_theta, 0)
+    ckt += RZ(theta_1, 0)
+    ckt += RX(-1*x_theta, 0)
 
-    ckt += RZ(-1*r_theta, 0),
-    ckt += RX(-1*x_theta, 0),
-    ckt += RX(-1*theta_2, 0),
-    ckt += RZ(r_theta, 0),
+    ckt += CZ(1, 0)
+
+    ckt += RX(x_theta, 0)
+    ckt += RZ(-1*theta_1, 0)
+    ckt += RX(-1*x_theta, 0)
     return ckt

@@ -3,7 +3,7 @@ import modules.ckt_tools as ct
 from pyquil.api import WavefunctionSimulator
 import numpy as np
 
-# gradient descent to find parameters for ckt producing |00> and |11> with equal probabilities
+# gradient descent to find parameters for ckt producing | 00 > and | 11 > with equal probabilities
 ckt_program = ct.gen_ckt()
 print("Program -->", ckt_program)
 

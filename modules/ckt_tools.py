@@ -54,4 +54,33 @@ def bell_ckt(x_theta, theta_0, theta_1):
     ckt += RX(x_theta, 0)
     ckt += RZ(-1*theta_1, 0)
     ckt += RX(-1*x_theta, 0)
+
+    return ckt
+
+
+def bell_ckt_gd():
+    ckt = Program()
+    theta_0 = ckt.declare('theta_0', memory_type='REAL')
+    theta_1 = ckt.declare("theta_1", memory_type='REAL')
+    x_theta = ckt.declare("x_theta", memory_type='REAL')
+    ro = ckt.declare('ro', memory_type='BIT', memory_size=2)
+    ckt += RX(x_theta, 1)
+    ckt += RZ(x_theta, 1)
+    ckt += RX(-1*x_theta, 1)
+
+    ckt += RX(theta_0, 0)
+    ckt += RZ(theta_0, 0)
+
+    ckt += RX(x_theta, 0)
+    ckt += RZ(theta_1, 0)
+    ckt += RX(-1*x_theta, 0)
+
+    ckt += CZ(1, 0)
+
+    ckt += RX(x_theta, 0)
+    ckt += RZ(-1*theta_1, 0)
+    ckt += RX(-1*x_theta, 0)
+
+    ckt += MEASURE(0, ro[0])
+    ckt.wrap_in_numshots_loop(1000)
     return ckt

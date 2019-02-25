@@ -35,12 +35,16 @@ main.py: (all qubits are initially at state |0>)
           - Apply RX gate on qubit-0 with angle -pi/2
     - Note: The above steps are illustrated for producing the Bell state (|01> - |10>)/sqrt(2). The code produces all of the 4 Bell states by changing thetas and rotating qubit-0 by pi to produce |1> as appropriate. 
     
+bell_main.py: An attempt to find a Bell state using Gradient Descent.    
     
 modules/ckt_tools.py:
   1. gen_ckt() : function that returns a program for producing |00> and |11> with equal probabilties.
   2. bell_ckt() : function that returns a program for producing any of the 4 Bell states
   3. init_qc_exec(ckt_program): function that returns an instance of a QuantumComputer and an executable after compiling ckt_program 
+  4. bell_ckt_gd(): function that returns a program for producing any of the 4 Bell states using Gradient Descent
   
 modules/gd_tools.py:
   1. cost_func(x) : a cost function that returns the value of a gradient at x
   2. find_optimal_theta(qc, executable): function that returns an optimal value of theta for the input executable using an intance of the QuantumComputer qc using gradient descent
+  3. bell_cost_func(x): a cost function that returns the value of a gradient at x for finding Bell state
+  4. bell_find_optimal_theta(qc, executable): function that returns an optimal value of theta for the input executable using an intance of the QuantumComputer qc using gradient descent for finding Bell State
